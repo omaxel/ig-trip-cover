@@ -16,7 +16,7 @@ export class ImageEditorComponent {
     imgResult$ = signal<null | string>(null);
     overlayText: string = 'Your Text Here';
     beforeAfterText: string = '☀️';
-    fontSize$ = signal(48);
+    fontSize$ = signal(96);
     bgOpacity = signal(0.65);
     exporting$ = signal(false);
 
