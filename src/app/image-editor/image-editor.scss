@@ -17,11 +17,16 @@
 .overlay-text {
   position: absolute;
   top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 48px;
+  left: 0;
+  right: 0;
+  transform: translateY(-50%);
   color: white;
   text-shadow: 2px 2px 4px #000;
+  text-align: center;
+
+  font-family: "Permanent Marker", cursive;
+  font-weight: 400;
+  font-style: normal;
 }
 
 .overlay-bg {
@@ -36,4 +41,10 @@
   position: fixed;
   bottom: 20px;
   right: 20px;
+}
+
+.result {
+    width: 1080px;
+  height: 1920px;
+  overflow: hidden;
 }

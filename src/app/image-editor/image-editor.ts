@@ -13,7 +13,10 @@ import { isHeic, heicTo } from "heic-to"
 export class ImageEditorComponent {
     status$ = signal('');
     imageSrc$ = signal<null | string>(null);
+    imgResult$ = signal<null | string>(null);
     overlayText: string = 'Your Text Here';
+    beforeAfterText: string = '☀️';
+    fontSize$ = signal(48);
     bgOpacity = signal(0.65);
     exporting$ = signal(false);
 
@@ -51,10 +54,8 @@ export class ImageEditorComponent {
             width: 1080,
             height: 1920
         }).then(canvas => {
-            const link = document.createElement('a');
-            link.download = 'edited-image.jpg';
-            link.href = canvas.toDataURL('image/jpeg');
-            link.click();
+            const imageData = canvas.toDataURL('image/jpeg');
+            this.imgResult$.set(imageData);
             this.exporting$.set(false);
         });
     }
