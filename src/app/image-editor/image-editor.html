@@ -1,0 +1,29 @@
+<div class="container">
+    <div>
+        Status: {{status$()}}
+    </div>
+
+
+    <div class="form-group mb-3">
+        <label for="overlayText">Overlay Text:</label>
+        <input id="overlayText" class="form-control" type="text" [(ngModel)]="overlayText" />
+    </div>
+
+    <div class="form-group mb-3">
+        <label for="bgOpacity">Background Opacity: {{ (bgOpacity() * 100) | number:'1.0-0' }}%</label>
+        <input id="bgOpacity" class="form-range" type="range" min="0" max="1" step="0.01" [value]="bgOpacity()"
+            (input)="bgOpacity.set($any($event.target).value)" />
+    </div>
+
+    <input class="form-control mb-3" type="file" (change)="onFileSelected($event)" accept="image/*" />
+
+    <div #canvasContainer class="canvas" [class.export]="exporting$()" [hidden]="imageSrc$() == null">
+        <img [src]="imageSrc$()" class="background" />
+        <div class="overlay-bg" [style.backgroundColor]="'rgba(0, 0, 0, ' + bgOpacity() + ')'"></div>
+        <div class="overlay-text">{{ overlayText }}</div>
+    </div>
+</div>
+
+<div class="btn-download-container">
+    <button class="btn btn-primary" (click)="downloadImage()">Download PNG</button>
+</div>
